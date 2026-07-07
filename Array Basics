@@ -1,0 +1,254 @@
+# 1- Sum of Array Elements
+-----------------------------------------------------
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+
+    cout << sum;
+
+    return 0;
+}
+-------------------------------------------------------
+
+#2- Count Even and Odd ELements of Array
+--------------------------------------------------------
+#include<iostream>
+#include<vector>
+using namespace std;
+void countarr(vector<int>&nums){
+    int n=nums.size();
+    int odd=0;
+    int even=0;
+    for(int i=0;i<n;i++){
+        if(nums[i]%2==0)
+        even++;
+        else
+        odd++;
+    }
+    cout<<even;
+    cout<<odd;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    countarr(nums);
+}
+----------------------------------------------------------
+#3- Sum of Even and Product of Odd elements of Array
+
+#include<iostream>
+#include<vector>
+using namespace std;
+void sumprod(vector<int>&nums){
+    int n=nums.size();
+    int sum=0;
+    int prod=1;
+    for(int i=0;i<n;i++){
+        if(nums[i]%2==0)
+        sum=sum+nums[i];
+        else
+        prod=prod*nums[i];
+    }
+    cout<<sum<<" "<<prod;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    sumprod(nums);
+}
+----------------------------------------------------------
+#4- Alternate elements of Array
+
+#include<iostream>
+#include<vector>
+using namespace std;
+void alternate(vector<int>&nums){
+    int n=nums.size();
+    for(int i=0;i<n;i=i+2)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    alternate(nums);
+}
+---------------------------------------------------------
+
+#5- Reverse Array Elements( Or use Void )
+
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int> reverse(vector<int>&nums){
+    vector<int>ans;
+    int n=nums.size();
+    for(int i=n-1;i>=0;i--)
+    ans.push_back(nums[i]);
+    return ans;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    vector<int>ans=reverse(nums);
+    for(int i=0;i<ans.size();i++)
+    cout<<ans[i];
+}
+--------------------------------------------------------
+
+#6- Linear Search 
+
+#include<iostream>
+#include<vector>
+using namespace std;
+bool linearsearch(vector<int>&nums,int key){
+    int n=nums.size();
+    for(int i=0;i<n;i++){
+        if(nums[i]==key)
+        return true;
+    }
+    return false;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    int key;
+    cin>>key;
+    cout<<linearsearch(nums,key);
+}
+---------------------------------------------------------
+
+#7- Frequency of Array Elements
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int frequency(vector<int>&nums,int key){
+    int n=nums.size();
+    int freq=0;
+    for(int i=0;i<n;i++){
+        if(nums[i]==key)
+        freq++;
+    }
+    return freq;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    int key;
+    cin>>key;
+    cout<<frequency(nums,key);
+}
+----------------------------------------------------------
+
+#8- Maximum ELements of Array
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int maxelement(vector<int>&nums){
+    int n=nums.size();
+    int max=nums[0];
+    for(int i=0;i<nums.size();i++){
+        if(nums[i]>max)
+        max=nums[i];
+    }
+    return max;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++ )
+    cin>>nums[i];
+    cout<<maxelement(nums);
+}
+-----------------------------------------------------------
+
+#9- Minimum Elements of Array
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int minelement(vector<int>&nums){
+    int n=nums.size();
+    int min=nums[0];
+    for(int i=0;i<nums.size();i++){
+        if(nums[i]<min)
+        min=nums[i];
+    }
+    return min;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++ )
+    cin>>nums[i];
+    cout<<minelement(nums);
+}
+-----------------------------------------------------------
+
+#10- Max and Min element combinly
+
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int>maxmin(vector<int>&nums){
+    vector<int>ans;
+    int n=nums.size();
+    int max=nums[0];
+    int min=nums[0];
+    for(int i=0;i<n;i++){
+        if(nums[i]>max)
+        max=nums[i];
+        
+        if(nums[i]<min)
+        min=nums[i];
+    }
+    ans.push_back(max);
+    ans.push_back(min);
+    return ans;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++)
+    cin>>nums[i];
+    vector<int>result=maxmin(nums);
+    for(int i=0;i<result.size();i++)
+    cout<<result[i]<<" ";
+}
+
+-----------------------------------------------------------
