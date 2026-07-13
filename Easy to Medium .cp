@@ -263,5 +263,171 @@ int main(){
 }
 
 ---------------------------------------------------------------------------------------------------------------------------------
+6-# Sort colors Problems(Brute Force)
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+void sorts(vector<int>&nums){
+    sort(nums.begin(),nums.end());
+    for(int i=0;i<nums.size();i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={0,1,2,1,0,2,2,0,1,0,1,2,0,0};
+    sorts(nums);
+}
+
+#- Sort Colors (Optimized Approach)
+
+#include<iostream>
+#include<vector>
+using namespace std;
+void sortcolors(vector<int>&nums){
+    int n=nums.size();
+    int count0=0; int count1=0; int count2=0;
+    for(int i=0;i<n;i++){
+        if(nums[i]==0)
+        count0++;
+        else if(nums[i]==1)
+        count1++;
+        else
+        count2++;
+    }
+    int idx=0;
+    for(int i=0;i<count0;i++)
+    nums[idx++]=0;
+    for(int i=0;i<count1;i++)
+    nums[idx++]=1;
+    for(int i=0;i<count2;i++)
+    nums[idx++]=2;
+    for(int i=0;i<n;i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={0,1,2,0,1,2,0,1,2,2,1,0};
+    sortcolors(nums);
+}
+
+------------------------------------------------------------------------------------------
+
+#- Sort Colors (Optimal Approach)
+#include<iostream>
+#include<vector>
+using namespace std;
+void sortcolors(vector<int>&nums){
+    int n=nums.size();
+    int mid=0;
+    int high=n-1;
+    int low=0;
+    while(mid<=high){
+        if(nums[mid]==0){
+        swap(nums[low],nums[mid]);
+        low++;
+        mid++;
+        }
+        else if(nums[mid]==1)
+        mid++;
+        else{
+            swap(nums[high],nums[mid]);
+            high--;
+        }
+    }
+    for(int i=0;i<n;i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={0,1,2,0,1,2,0,1,2};
+    sortcolors(nums);
+}
+-------------------------------------------------------------------------------------------------------------------------------
+
+7- #Merge Two Sorted Arrays (Optimal Solution)
+
+#include<iostream>
+#include<vector>
+using namespace std;
+void mergetwo(vector<int>A,int m,vector<int>B,int n){
+    int i=m-1;
+    int j=n-1;
+    int idx=(m+n)-1;
+    while(i>=0 && j>=0){
+        if(A[i]>B[j]){
+            A[idx]=A[i];
+            idx--;
+            i--;
+        }
+        else{
+            A[idx]=B[j];
+            idx--;
+            j--;
+        }
+    }
+    while(j>=0){
+        A[idx]=B[j];
+        idx--;
+        j--;
+    }
+    for(int i=0;i<A.size();i++)
+    cout<<A[i]<<" ";
+}
+int main(){
+    vector<int>A={1,2,3,0,0,0};
+    vector<int>B={4,5,6};
+    mergetwo(A,3,B,3);
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+8- # Two Sum Problem (Brute Force Approach)
+
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int>twosum(vector<int>& nums,int target){
+    int n=nums.size();
+    int sum=0;
+    for(int i=0;i<n;i++){
+        int f=nums[i];
+        for(int j=i+1;j<n;j++){
+            int s=nums[j];
+            sum=nums[i]+nums[j];
+            if(sum==target)
+            return {i,j};
+        }
+
+    }
+    return {-1,-1};
+}
+int main(){
+    vector<int>nums={1,2,3,4,5};
+    int target;
+    vector<int>res=twosum(nums,6);
+    for(int i=0;i<res.size();i++)
+    cout<<res[i]<<" ";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
