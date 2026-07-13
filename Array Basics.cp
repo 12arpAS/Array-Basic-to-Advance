@@ -617,9 +617,76 @@ int main(){
 }
 
 ----------------------------------------------------------------
+#4- Bubble Sort Algorithm
 
+#include<iostream>
+#include<vector>
+using namespace std;
+void bubblesort(vector<int>&nums){
+    int n=nums.size();
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n-i-1;j++){       // the last elemnt moved is largest element so we dont need to compare sorted part.
+            if(nums[j]>nums[j+1]){
+                swap(nums[j],nums[j+1]);
+            }
+        }
+    }
+    for(int i=0;i<n;i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={4,5,2,1,3};
+    bubblesort(nums);
+}
 
+--------------------------------------------------------------------------------
+#5- Selection Sort Algorithm
 
+#include<iostream>
+#include<vector>
+using namespace std;
+void selectionsort(vector<int>&nums){
+    int n=nums.size();
+    for(int i=0;i<n-1;i++){
+        int smallestidx=i;
+        for(int j=i+1;j<n;j++){
+            if(nums[j]<nums[smallestidx])
+            smallestidx=j;
+            swap(nums[i],nums[smallestidx]);
+        }
+    }
+    for(int i=0;i<n;i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={5,4,3,2,1};
+    selectionsort(nums);
+}
+-----------------------------------------------------------------------------
+#6- Insertion Sort Algorithm
+
+#include<iostream>
+#include<vector>
+using namespace std;
+void insertionsort(vector<int>&nums){
+    int n=nums.size();
+    for(int i=1;i<n;i++){
+        int curr=nums[i];
+        int prev=i-1;
+        while(prev>=0 && nums[prev]>curr){
+            nums[prev+1]=nums[prev];
+            prev--;
+        }
+        nums[prev+1]=curr;
+    }
+    for(int i=0;i<n;i++)
+    cout<<nums[i]<<" ";
+}
+int main(){
+    vector<int>nums={5,4,3,2,1};
+    insertionsort(nums);
+}
+------------------------------------------------------------------------------------
 
 
 
