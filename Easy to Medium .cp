@@ -408,12 +408,241 @@ int main(){
     cout<<res[i]<<" ";
 }
 
+#- Two Sum Optimal Approach(Two Pointers)
+
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int>Twosum(vector<int>&nums,int target){
+    int n=nums.size();
+    int l=0;
+    int r=n-1;
+    while(l<r){
+        int sum=nums[l]+nums[r];
+        if(sum==target)
+        return {l,r};
+        else if(sum<target)
+        l++;
+        else
+        r--;
+    }
+    return {-1,-1};
+}
+int main(){
+    vector<int>nums={1,2,3,4,5};
+    int target;
+    vector<int>res=Twosum(nums,9);
+    for(int i=0;i<res.size();i++)
+    cout<<res[i]<<" ";
+}
+
+#- Two Sum Optimized Approach(Unordered_map)
+
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+using namespace std;
+vector<int>Twosum(vector<int>&nums,int target){
+    int n=nums.size();
+    //vector<int>ans;
+    unordered_map<int,int>m;
+    for(int i=0;i<n;i++){
+        int f=nums[i];
+        int s=target-f;
+        if(m.find(s)!=m.end()){
+            return {m[s],i};
+        }
+        m[f]=i;
+    }
+    return {-1,-1};
+}
+int main(){
+    vector<int>nums={1,2,3,4,5};
+    int target;
+    vector<int>res=Twosum(nums,9);
+    for(int i=0;i<res.size();i++)
+    cout<<res[i]<<" ";
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+9- # Find Duplicates in Array(Brute Force Approach)
+
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+using namespace std;
+int findduplicates(vector<int>&nums){
+    int n=nums.size();
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            if(nums[i]==nums[j])
+            return nums[i];
+        }
+    }
+    return -1;
+}
+int main(){
+    vector<int>nums={1,2,2,3,4,5};
+    cout<<findduplicates(nums);
+}
+
+#- Find Duplicates in Array(Optimal using unordered_set)
+
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+using namespace std;
+int findduplicates(vector<int>&nums){
+    int n=nums.size();
+    unordered_set<int>m;
+    for(int i=0;i<n;i++){
+        if(m.find(nums[i])!=m.end())
+        return nums[i];
+        m.insert(nums[i]);
+    }
+    return -1;
+}
+int main(){
+    vector<int>nums={1,2,2,3,4,5};
+    cout<<findduplicates(nums);
+}
+
+#- Find Duplicates in Array (Optimal Solution)
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int findduplicates(vector<int>&nums){
+    int n=nums.size();
+    int slow=nums[0];
+    int fast=nums[0];
+    do{
+        slow=nums[slow];
+        fast=nums[nums[fast]];
+    }while(slow!=fast);
+    
+    slow=nums[0];
+    while(slow!=fast){
+        slow=nums[slow];
+        fast=nums[fast];
+    }
+    return slow;
+}
+int main(){
+    vector<int>nums={1,2,2,3,4};
+    cout<<findduplicates(nums);
+}
+
+----------------------------------------------------------------------------------------------------------
+
+10-# Threesum Problem (Brute Force)
+
+#include<iostream>
+#include<vector>
+#include<set>
+#include<algorithm>
+using namespace std;
+vector<vector<int>>Threesum(vector<int>&nums){
+    int n=nums.size();
+    vector<vector<int>>ans;
+    set<vector<int>>res;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            for(int k=j+1;k<n;k++){
+                if(nums[i]+nums[j]+nums[k]==0){
+                    vector<int>temp={nums[i],nums[j],nums[k]};
+                    sort(temp.begin(),temp.end());                 // sort to remove duplicate permutations of triplets.
+                    if(res.find(temp)==res.end()){
+                    res.insert(temp);
+                    ans.push_back(temp);
+                    }
+                }
+            }
+        }
+    }
+    return ans;
+}
+int main(){
+    vector<int>nums={-1,-2,3,-1,-2,-3,0};
+    vector<vector<int>>result=Threesum(nums);
+    for(int i=0;i<result.size();i++){
+        for(int j=0;j<result[i].size();j++){
+            cout<<result[i][j]<<" ";
+        }
+    }
+}
 
 
+#- ThreeSum (Optimized Approach)
 
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+vector<vector<int>>Threesum(vector<int>&nums){
+    int n=nums.size();
+    vector<vector<int>>ans;
+    sort(nums.begin(),nums.end());
+    for(int i=0;i<n;i++){
+        if(i>0 && nums[i]==nums[i-1])
+        continue;
+        int j=i+1;
+        int k=n-1;
+        while(j<k){
+            int sum=nums[i]+nums[j]+nums[k];
+            if(sum<0)
+            j++;
+            else if(sum>0)
+            k--;
+            else{
+                ans.push_back({nums[i],nums[j],nums[k]});
+                j++;
+                k--;
+                while(j<k && nums[j]==nums[j-1])
+                j++;
+            }
+        }
+    }
+    return ans;
+}
+int main(){
+    vector<int>nums={-1,-2,3,-1,-2,-3,0};
+    vector<vector<int>>result=Threesum(nums);
+    for(int i=0;i<result.size();i++){
+        for(int j=0;j<result[i].size();j++){
+            cout<<result[i][j]<<" ";
+        }
+    }
+}
 
+-----------------------------------------------------------------------------------------------------------------------------
 
+11- # Subarray Sum Equals K (Brute Force Approach)
 
+#include<iostream>
+#include<vector>
+using namespace std;
+int subarraysum(vector<int>&nums,int k){
+    int n=nums.size();
+    int count=0;
+    for(int i=0;i<n;i++){
+        int sum=0;
+        for(int j=i;j<n;j++){
+            sum+=nums[j];
+            if(sum==k)
+            count++;
+        }
+    }
+    return count;
+}
+int main(){
+    vector<int>nums={1,2,3};
+    int k;
+    cout<<subarraysum(nums,3);
+}
+
+#- Subarray Sum Equals K (Optimized Approach)
 
 
 
