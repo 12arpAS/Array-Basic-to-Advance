@@ -1,3 +1,9 @@
+/* Two Pointers---->Used to find two points
+  Sliding Window----->Used to find data between two points with positive numbers
+  Kadane's Algorithm----->Works as sliding window but with negative elements and finds maximum sum
+  Prefix Sum---->Used as sliding window with negative elements and questions like sum, count, average of subarray
+*/
+
 //1- Remove Duplicates From Sorted Array
 
 #include<iostream>
