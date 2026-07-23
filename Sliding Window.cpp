@@ -107,4 +107,57 @@ int main(){
     cout<<consecutive1(nums,2);
 }
 -----------------------------------------------------------------------------------------------------
-  //5-
+//5- Subarray Product less than k
+
+  #include<iostream>
+#include<vector>
+using namespace std;
+int subaarayprod(vector<int>&nums,int k){
+    int n=nums.size();
+    int prod=1;
+    int count=0;
+    int left=0;
+    if(k<=1)
+    return 0;
+    for(int right=0;right<n;right++){
+        prod=prod*nums[right];
+        while(prod>=k){
+            prod=prod/nums[left]; //removing left from window, adding upcoming left
+            left++;
+        }
+        count=count+right-left+1;
+    }
+    return count;
+}
+int main(){
+    vector<int>nums={10,5,2,6};
+    int k;
+    cout<<subaarayprod(nums,100);
+}
+------------------------------------------------------------------------------------------------
+//6- Minimum Size Subarray Sum
+
+  #include<iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+int minsubarraysum(vector<int>&nums,int target){
+    int n=nums.size();
+    int left=0;
+    int sum=0;
+    int ans=INT_MAX;
+    for(int right=0;right<n;right++){
+        sum=sum+nums[right];
+        while(sum>=target){
+            ans=min(ans,right-left+1);        //right-left+1 is the window size of sum>=target
+            sum=sum-nums[left];               // after finding one such window we are finding other window where window size even smaller
+            left++;
+        }
+    }
+    return(ans==INT_MAX)?0:ans;              // if no subarray such found then return 0 else return 1.
+}
+int main(){
+    int target;
+    vector<int>nums={2,3,1,2,4,3};
+    cout<<minsubarraysum(nums,7);
+}
